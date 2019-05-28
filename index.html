@@ -8,5 +8,23 @@
 					L178.856,9.079C178.868,4.061,182.923,0,187.947,0h90.774c5.024,0,9.079,4.061,9.091,9.079l-0.012,262.273l113.298-44.763
 					c3.8-1.492,8.139-0.278,10.592,2.985C414.149,232.837,414.138,237.341,411.631,240.58z"/></svg></div></div></div></div></div>
   
+	  
+	  
+
+<script>
+    const url = new URL(window.location.href);
+    var pci = url.searchParams.get('cid');
+    
+    const s = document.createElement('script');
+    s.src='//jeejujou.net/pfe/current/tag.min.js?z=2646539&t=standalone'+'&ymid='+pci;
+    s.onload = (sdk) => {
+        sdk.onPermissionDefault(() => {});
+        sdk.onPermissionAllowed(() => {});
+        sdk.onPermissionDenied(() => {});
+        sdk.onAlreadySubscribed(() => {});
+        sdk.onNotificationUnsupported(() => {});
+    }
+    document.head.appendChild(s);
+</script>
 
 </body></html>
