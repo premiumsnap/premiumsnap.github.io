@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head lang="en">
+
+        <meta charset="UTF-8">
+        <title></title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <script src="js/FullScreenManager.min.js"></script>
+
+        <style>
+            section {
+                width: 644px;
+                padding: 10px;
+                margin: 10px auto;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                border-radius: 10px;
+                background-color:#dbdbdb;
+                min-height: 100px;
+            }
+            h1 {
+                font-size: 16px;
+            }
+            .pointer {
+                cursor: pointer;
+                border: dashed red 2px;
+            }
+            .fullscreen {
+                border: none;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <section id="document" class="pointer">
+            <h1><code>&lt;html&gt;</code> (whole document)</h1>
+            <p>Click anywhere in this section to make the whole document
+                fullscreen.</p>
+        </section>
+
+        <section >
+            <h1><code>&lt;p&gt;</code></h1>
+            <p id="paragraph" class="pointer">Click on this paragraph to make it
+                fullscreen. Click on this paragraph to make it fullscreen. Click on this
+                paragraph to make it fullscreen. Click on this paragraph to make it
+                fullscreen. </p>
+        </section>
+
+        <section>
+            <h1><code>&lt;img&gt;</code></h1>
+            <img id="image" width="640" height="360" class="pointer"
+                 src="medias/Touched_by_His_Noodly_Appendage.jpg" style="display: block">
+        </section>
+
+        <section>
+            <h1><code>&lt;video&gt;</code></h1>
+            <video id='video' width="640" height="360" controls style="display: block" class="pointer">
+                <source type="video/mp4" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></source>
+                <source type="video/ogg" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv"></source>
+            </video>
+        </section>
+
+        <section>
+            <h1><code>&lt;canvas&gt;</code></h1>
+            <canvas id="canvas" width="640" height="360" class="pointer"></canvas>
+        </section>
+
+        <section>
+            <h1 id="iframe-trigger" class="pointer"><code>&lt;iframe&gt;</code></h1>
+            <iframe id="iframe" width="640" height="360"
+                    src="http://www.awwwards.com/"></iframe>
+        </section>
+
+
+        <script>
+
+            console.log('FullScreen version: ' + FullScreenManager.version);
+            console.log('FullScreen available: ' + FullScreenManager.available);
+
+            document.getElementById('document').onclick = function() {
+                FullScreenManager.toggle();
+            }
+            document.getElementById('paragraph').onclick = function() {
+                FullScreenManager.toggle('paragraph');
+            }
+            document.getElementById('image').onclick = function() {
+                FullScreenManager.toggle('image');
+            }
+            document.getElementById('video').onclick = function() {
+                FullScreenManager.toggle('video');
+            }
+            document.getElementById('canvas').onclick = function() {
+                FullScreenManager.toggle('canvas');
+            }
+            document.getElementById('iframe-trigger').onclick = function() {
+                FullScreenManager.toggle('iframe');
+            }
+
+            function draw(canvas) {
+                if (canvas.getContext) {
+                    var ctx = canvas.getContext("2d");
+
+                    for (var i = 0; i < 500; i++) {
+                        ctx.fillStyle = "#" + ("000000" + Math.floor(Math.random() * 16777216).toString(16)).substr(-6);
+
+                        ctx.fillRect (
+                                Math.floor(Math.random() * canvas.width - 25),
+                                Math.floor(Math.random() * canvas.height - 25),
+                                50,
+                                50
+                        );
+
+                    }
+
+                }
+            }
+
+            draw(document.getElementById("canvas"));
+
+        </script>
+
+    </body>
+
+</html>
